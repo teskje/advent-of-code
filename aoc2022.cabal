@@ -1,0 +1,26 @@
+cabal-version: 2.4
+name:          aoc2022
+version:       0.1.0.0
+
+author:        Jan Teske
+maintainer:    jteske@posteo.net
+
+library
+    hs-source-dirs:   lib
+    default-language: Haskell2010
+    exposed-modules:  Aoc
+    build-depends:
+        base       ^>= 4.16,
+        megaparsec ^>= 9.2,
+
+common day
+    hs-source-dirs:   days
+    default-language: Haskell2010
+    build-depends:
+        aoc2022,
+        base       ^>= 4.16,
+        megaparsec ^>= 9.2,
+
+executable day01
+    import:  day
+    main-is: Day01.hs

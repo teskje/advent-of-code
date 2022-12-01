@@ -1,0 +1,6 @@
+cradle:
+  cabal:
+    - path: "lib/Aoc.hs"
+      component: "aoc2022"
+    - path: "days/Day01.hs"
+      component: "aoc2022:exe:day01"
