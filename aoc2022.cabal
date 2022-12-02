@@ -8,6 +8,7 @@ maintainer:    jteske@posteo.net
 library
     hs-source-dirs:   lib
     default-language: Haskell2010
+    ghc-options:      -Wall
     exposed-modules:  Aoc
     build-depends:
         base       ^>= 4.16,
@@ -16,6 +17,7 @@ library
 common day
     hs-source-dirs:   days
     default-language: Haskell2010
+    ghc-options:      -Wall
     build-depends:
         aoc2022,
         base       ^>= 4.16,
@@ -24,3 +26,7 @@ common day
 executable day01
     import:  day
     main-is: Day01.hs
+
+executable day02
+    import:  day
+    main-is: Day02.hs
