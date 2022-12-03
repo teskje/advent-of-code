@@ -14,8 +14,13 @@ getParsedInput day p = do
 
 getParsedLines :: Int -> Parser a -> IO [a]
 getParsedLines day p = do
+  ls <- getInputLines day
+  either fail return (parseLines p ls)
+
+getInputLines :: Int -> IO [String]
+getInputLines day = do
   input <- getRawInput day
-  either fail return (parseLines p input)
+  return $ lines input
 
 getRawInput :: Int -> IO String
 getRawInput = readFile . inputFileName
@@ -23,8 +28,8 @@ getRawInput = readFile . inputFileName
 inputFileName :: Int -> String
 inputFileName = printf "inputs/day%02d.txt"
 
-parseLines :: Parser a -> String -> Either String [a]
-parseLines p s = traverse (parseString p) (lines s)
+parseLines :: Parser a -> [String] -> Either String [a]
+parseLines p = traverse (parseString p)
 
 parseString :: Parser a -> String -> Either String a
 parseString p s = left errorBundlePretty (runParser p "" s)
