@@ -21,6 +21,7 @@ common day
     build-depends:
         aoc2022,
         base       ^>= 4.16,
+        containers ^>= 0.6,
         megaparsec ^>= 9.2,
 
 executable day01
@@ -42,3 +43,7 @@ executable day04
 executable day05
     import:  day
     main-is: Day05.hs
+
+executable day06
+    import:  day
+    main-is: Day06.hs
