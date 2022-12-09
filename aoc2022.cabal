@@ -51,3 +51,7 @@ executable day06
 executable day07
     import:  day
     main-is: Day07.hs
+
+executable day08
+    import:  day
+    main-is: Day08.hs
