@@ -2,6 +2,9 @@ cradle:
   cabal:
     - path: "lib/Aoc.hs"
       component: "aoc2022"
+    - path: "lib/Aoc/RangeSet.hs"
+      component: "aoc2022"
+
     - path: "days/Day01.hs"
       component: "aoc2022:exe:day01"
     - path: "days/Day02.hs"
@@ -30,3 +33,5 @@ cradle:
       component: "aoc2022:exe:day13"
     - path: "days/Day14.hs"
       component: "aoc2022:exe:day14"
+    - path: "days/Day15.hs"
+      component: "aoc2022:exe:day15"

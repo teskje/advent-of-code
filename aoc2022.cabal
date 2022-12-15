@@ -9,7 +9,9 @@ library
     hs-source-dirs:   lib
     default-language: Haskell2010
     ghc-options:      -Wall
-    exposed-modules:  Aoc
+    exposed-modules:
+        Aoc
+        Aoc.RangeSet
     build-depends:
         base       ^>= 4.16,
         megaparsec ^>= 9.2,
@@ -80,3 +82,7 @@ executable day13
 executable day14
     import:  day
     main-is: Day14.hs
+
+executable day15
+    import:  day
+    main-is: Day15.hs
