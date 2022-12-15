@@ -1,10 +1,9 @@
 module Main where
 
-import Aoc (Parser, getParsedLines)
+import Aoc (Parser, getParsedLines, numberP)
 import Data.Ix (range)
 import Data.List (intersect)
 import Text.Megaparsec.Char (char)
-import Text.Megaparsec.Char.Lexer (decimal)
 
 main :: IO ()
 main = do
@@ -19,7 +18,7 @@ sectionsPair = do
   b <- sections
   return (a, b)
   where
-    sections = range' <$> decimal <* char '-' <*> decimal
+    sections = range' <$> numberP <* char '-' <*> numberP
     range' = curry range
 
 contains :: ([Int], [Int]) -> Bool

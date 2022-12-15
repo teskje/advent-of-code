@@ -1,10 +1,9 @@
 module Main where
 
-import Aoc (Parser, getParsedLines)
+import Aoc (Parser, getParsedLines, numberP)
 import Data.Set as S
 import Text.Megaparsec (choice)
 import Text.Megaparsec.Char (char)
-import Text.Megaparsec.Char.Lexer (decimal)
 
 main :: IO ()
 main = do
@@ -20,7 +19,7 @@ motion :: Parser [Move]
 motion = do
   d <- choice [L <$ char 'L', R <$ char 'R', U <$ char 'U', D <$ char 'D']
   _ <- char ' '
-  n <- decimal
+  n <- numberP
   return (replicate n d)
 
 type Pos = (Int, Int)

@@ -1,10 +1,9 @@
 module Main where
 
-import Aoc (Parser, getParsedInput)
+import Aoc (Parser, getParsedInput, numberP)
 import Data.List (sortBy)
 import Text.Megaparsec (many, sepBy)
 import Text.Megaparsec.Char (newline)
-import Text.Megaparsec.Char.Lexer (decimal)
 
 main :: IO ()
 main = do
@@ -16,4 +15,4 @@ main = do
 
 caloriesList :: Parser [[Int]]
 caloriesList = sepBy (many calories) newline
-  where calories = decimal <* newline
+  where calories = numberP <* newline

@@ -1,11 +1,10 @@
 module Main where
 
-import Aoc (Parser, getParsedInput)
+import Aoc (Parser, getParsedInput, numberP)
 import Data.List (transpose)
 import Data.Maybe (catMaybes)
 import Text.Megaparsec (between, many, manyTill, sepBy, try, (<|>))
 import Text.Megaparsec.Char (char, newline, string, upperChar)
-import Text.Megaparsec.Char.Lexer (decimal)
 
 main :: IO ()
 main = do
@@ -37,16 +36,16 @@ maybeCrate = (Just <$> crate) <|> (Nothing <$ empty)
 crateNumbers :: Parser [Int]
 crateNumbers = number `sepBy` char ' ' <* newline
   where
-    number = between (char ' ') (char ' ') decimal
+    number = between (char ' ') (char ' ') numberP
 
 stepLine :: Parser Step
 stepLine = do
   _ <- string "move "
-  move <- decimal
+  move <- numberP
   _ <- string " from "
-  from <- decimal
+  from <- numberP
   _ <- string " to "
-  to <- decimal
+  to <- numberP
   _ <- newline
   return (move, from, to)
 

@@ -1,11 +1,10 @@
 module Main where
 
-import Aoc (Parser, getParsedInput)
+import Aoc (Parser, getParsedInput, numberP)
 import Data.List (find, isPrefixOf, sort)
 import Data.Maybe (fromJust)
 import Text.Megaparsec (many, manyTill, (<|>))
 import Text.Megaparsec.Char (asciiChar, char, newline, string)
-import Text.Megaparsec.Char.Lexer (decimal)
 
 main :: IO ()
 main = do
@@ -36,7 +35,7 @@ lsCommand = do
 lsLine :: Parser Int
 lsLine = lsFile <|> lsDir
   where
-    lsFile = decimal <* char ' ' <* manyTill asciiChar newline
+    lsFile = numberP <* char ' ' <* manyTill asciiChar newline
     lsDir = 0 <$ string "dir " <* manyTill asciiChar newline
 
 type Path = [String]

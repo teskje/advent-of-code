@@ -1,11 +1,10 @@
 module Main where
 
-import Aoc (Parser, getParsedLines)
+import Aoc (Parser, getParsedLines, numberP)
 import Data.Map.Strict (Map)
 import qualified Data.Map.Strict as M
 import Text.Megaparsec (sepBy)
 import Text.Megaparsec.Char (char, string)
-import Text.Megaparsec.Char.Lexer (decimal)
 
 main :: IO ()
 main = do
@@ -42,9 +41,9 @@ rockPath = sepBy positionP (string " -> ")
 
 positionP :: Parser Pos
 positionP = do
-  x <- decimal
+  x <- numberP
   _ <- char ','
-  y <- decimal
+  y <- numberP
   return (x, y)
 
 plotPaths :: [[Pos]] -> Grid

@@ -1,9 +1,8 @@
 module Main where
 
-import Aoc (Parser, getParsedLines)
+import Aoc (Parser, getParsedLines, numberP)
 import Text.Megaparsec ((<|>))
 import Text.Megaparsec.Char (string)
-import Text.Megaparsec.Char.Lexer (decimal, signed)
 import Text.Printf (printf)
 
 main :: IO ()
@@ -19,11 +18,8 @@ data Inst = Addx Int | Noop
 instruction :: Parser Inst
 instruction = addx <|> noop
   where
-    addx = Addx <$ string "addx " <*> number
+    addx = Addx <$ string "addx " <*> numberP
     noop = Noop <$ string "noop"
-
-number :: Parser Int
-number = signed (return ()) decimal
 
 execute :: [Inst] -> [Int]
 execute = execute' 1

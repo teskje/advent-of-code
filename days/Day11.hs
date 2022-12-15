@@ -1,10 +1,9 @@
 module Main where
 
-import Aoc (Parser, getParsedInput)
+import Aoc (Parser, getParsedInput, numberP)
 import Data.List (sortBy)
 import Text.Megaparsec (many, optional, sepBy, try, (<|>))
 import Text.Megaparsec.Char (char, newline, string)
-import Text.Megaparsec.Char.Lexer (decimal)
 
 main :: IO ()
 main = do
@@ -48,24 +47,24 @@ monkeyList = unzip <$> many monkeyP
 
 monkeyP :: Parser (Monkey, Hand)
 monkeyP = do
-  idx <- string "Monkey " *> decimal <* char ':' <* newline
+  idx <- string "Monkey " *> numberP <* char ':' <* newline
   hand <- string "  Starting items: " *> intList <* newline
   op <- string "  Operation: " *> opP <* newline
-  test <- string "  Test: divisible by " *> decimal <* newline
-  ifTrue <- string "    If true: throw to monkey " *> decimal <* newline
-  ifFalse <- string "    If false: throw to monkey " *> decimal <* newline
+  test <- string "  Test: divisible by " *> numberP <* newline
+  ifTrue <- string "    If true: throw to monkey " *> numberP <* newline
+  ifFalse <- string "    If false: throw to monkey " *> numberP <* newline
   _ <- optional newline
   let monkey = Monkey idx op test ifTrue ifFalse
   return (monkey, hand)
 
 intList :: Parser [Int]
-intList = decimal `sepBy` string ", "
+intList = numberP `sepBy` string ", "
 
 opP :: Parser (Int -> Int)
 opP = string "new = old " *> (add <|> try mul <|> sqr)
   where
-    add = (+) <$ string "+ " <*> decimal
-    mul = (*) <$ string "* " <*> decimal
+    add = (+) <$ string "+ " <*> numberP
+    mul = (*) <$ string "* " <*> numberP
     sqr = (\x -> x * x) <$ string "* old"
 
 runMonkeysN :: Int -> [Hand] -> [Monkey] -> ([Hand], [Count])

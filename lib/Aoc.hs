@@ -3,6 +3,7 @@ module Aoc where
 import Control.Arrow (left)
 import Data.Void (Void)
 import Text.Megaparsec (Parsec, errorBundlePretty, runParser)
+import Text.Megaparsec.Char.Lexer (decimal, signed)
 import Text.Printf (printf)
 
 type Parser = Parsec Void String
@@ -33,3 +34,6 @@ parseLines p = traverse (parseString p)
 
 parseString :: Parser a -> String -> Either String a
 parseString p s = left errorBundlePretty (runParser p "" s)
+
+numberP :: Parser Int
+numberP = signed (return ()) decimal

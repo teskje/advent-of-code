@@ -1,10 +1,9 @@
 module Main where
 
-import Aoc (Parser, getParsedInput)
+import Aoc (Parser, getParsedInput, numberP)
 import Data.List (sort)
 import Text.Megaparsec (between, sepBy, (<|>))
 import Text.Megaparsec.Char (char, newline)
-import Text.Megaparsec.Char.Lexer (decimal)
 
 main :: IO ()
 main = do
@@ -33,7 +32,7 @@ itemPair = do
 itemP :: Parser Item
 itemP = list <|> number
   where
-    number = Num <$> decimal
+    number = Num <$> numberP
     list = Lst <$> listP
 
 listP :: Parser [Item]
