@@ -47,3 +47,5 @@ cradle:
       component: "aoc2022:exe:day20"
     - path: "days/Day21.hs"
       component: "aoc2022:exe:day21"
+    - path: "days/Day22.hs"
+      component: "aoc2022:exe:day22"
